@@ -6,6 +6,9 @@ namespace Q1
     {
         static void Main(string[] args)
         {
+            double gamma = 0.999;
+            double epsilon = 1e-6;
+
             dynamic s1 = new StateSpace();
             s1.Add("Hostel");
             s1.Add("Academic_Building");
@@ -14,9 +17,6 @@ namespace Q1
             dynamic a1 = new ActionSpace();
             a1.Add("Class");
             a1.Add("Hungry");
-
-
-            Console.WriteLine(s1.Hostel);
 
             MDP Mdp = new MDP(s1, a1);
             var transitionsHostelClass = new List<Transition>
@@ -60,18 +60,16 @@ namespace Q1
             };
             Mdp.AddStateAction(s1.Canteen, a1.Hungry, transitionsCanteenHungry);
 
-            double gamma = 0.999;
-            double epsilon = 1e-6;
 
-            Dictionary<State, double> V = new Dictionary<State, double>();
+            Dictionary<State, double> value = new Dictionary<State, double>();
 
             Dictionary<State, Classes.Action> policy = new Dictionary<State, Classes.Action>();
 
-            Mdp.ValueIteration(out V, out policy, gamma, epsilon);
+            Mdp.ValueIteration(out value, out policy, gamma, epsilon);
             Console.WriteLine("Optimal Values With Value Iterations:");
             foreach (var state in Mdp.States)
             {
-                Console.WriteLine($"V({state}) = {V[state]:F4}");
+                Console.WriteLine($"value({state}) = {value[state]:F4}");
             }
 
             Console.WriteLine("\nOptimal Policy:");
@@ -82,11 +80,11 @@ namespace Q1
 
             Console.WriteLine("\n*************************\n");
 
-            Mdp.PolicyIteration(out V, out policy, gamma, epsilon);
+            Mdp.PolicyIteration(out value, out policy, gamma, epsilon);
             Console.WriteLine("Optimal Values With Policy Iterations:");
             foreach (var state in Mdp.States)
             {
-                Console.WriteLine($"V({state}) = {V[state]:F4}");
+                Console.WriteLine($"value({state}) = {value[state]:F4}");
             }
 
             Console.WriteLine("\nOptimal Policy:");
