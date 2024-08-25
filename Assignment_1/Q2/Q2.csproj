@@ -4,6 +4,10 @@
     <ProjectReference Include="..\Classes\Classes.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="pythonnet" Version="3.0.3" />
+  </ItemGroup>
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>

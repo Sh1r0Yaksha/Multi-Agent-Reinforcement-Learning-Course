@@ -1,4 +1,5 @@
 ﻿using Classes;
+using System.IO;
 
 namespace Q1
 {
@@ -92,6 +93,41 @@ namespace Q1
             {
                 Console.WriteLine($"π({state}) = {policy[state]}");
             }
+
+            // Create or open the Results.txt file to write to it
+            using (StreamWriter writer = new StreamWriter("Results.txt"))
+            {
+                writer.WriteLine("Optimal Values With Value Iterations:");
+                foreach (var state in Mdp.States)
+                {
+                    writer.WriteLine($"value({state}) = {value[state]:F4}");
+                }
+
+                writer.WriteLine("\nOptimal Policy:");
+                foreach (var state in Mdp.States)
+                {
+                    writer.WriteLine($"π({state}) = {policy[state]}");
+                }
+
+                writer.WriteLine("\n*************************\n");
+
+                Mdp.PolicyIteration(out value, out policy, gamma, epsilon);
+                writer.WriteLine("Optimal Values With Policy Iterations:");
+                foreach (var state in Mdp.States)
+                {
+                    writer.WriteLine($"value({state}) = {value[state]:F4}");
+                }
+
+                writer.WriteLine("\nOptimal Policy:");
+                foreach (var state in Mdp.States)
+                {
+                    writer.WriteLine($"π({state}) = {policy[state]}");
+                }
+            }
+
+            Console.WriteLine("Results have been written to Results.txt");
+
+
         }
     }
 }

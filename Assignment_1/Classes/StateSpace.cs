@@ -16,6 +16,11 @@ namespace Classes
             states.Add(stateName, new State(stateName));
         }
 
+        public void Add(State state)
+        {
+            states.Add(state.Name, state);
+        }
+
         // Overriding TryGetMember to access states dynamically
         public override bool TryGetMember(GetMemberBinder binder, out object? result)
         {
