@@ -35,3 +35,15 @@ value(Canteen) = 2042.8197
 π(Academic_Building) = Class
 
 π(Canteen) = Class
+
+# Discussions
+
+## MDP Diagram
+
+<Photo of MDP to be uploaded>
+
+## Combination Table
+
+<Photo of table>
+
+As can be seen from the results both the policy and value iteration values and policies converge to the same values.
