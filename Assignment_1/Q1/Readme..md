@@ -38,12 +38,12 @@ value(Canteen) = 2042.8197
 
 # Discussions
 
-## MDP Diagram
+## State Diagram
 
-<Photo of MDP to be uploaded>
+![State Diagram](State_Diagram.jpg)
 
 ## Combination Table
 
-<Photo of table>
+![Transition Table](Transition_Table.jpg)
 
 As can be seen from the results both the policy and value iteration values and policies converge to the same values.
