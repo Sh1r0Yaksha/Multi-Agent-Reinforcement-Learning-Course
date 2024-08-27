@@ -1,32 +1,4 @@
-﻿// Add nuget pythonnet - DONE
-// Create a nxn grid, set n = 9
-// Grid is Created by making a 2D array
-// 81 states
-
-// Set states based on their coordinate - use regex to get the corresponding coordinate
-// Actions are Up, Down, Left and Right
-
-
-// Add obstacles array
-// Add Portal array
-
-// Define Logic For movement, add logic for obstacle, boundary and portal
-
-// Set Robot position
-// Set Goal position
-
-// Use Python to plot
-
-/// <summary>
-/// The Following code is for python interop and will be used later
-/// </summary>
-
-
-// RunScript("python_script");
-
-
-
-using Python.Runtime;
+﻿using Python.Runtime;
 using Classes;
 
 namespace Q2
