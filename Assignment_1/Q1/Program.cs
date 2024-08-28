@@ -11,9 +11,9 @@ namespace Q1
             double epsilon = 1e-6;
 
             dynamic s1 = new StateSpace();
-            s1.Add("Hostel");
-            s1.Add("Academic_Building");
-            s1.Add("Canteen");
+            s1.Add("Hostel", -1);
+            s1.Add("Academic_Building", 3);
+            s1.Add("Canteen", 1);
 
             dynamic a1 = new ActionSpace();
             a1.Add("Class");
@@ -22,42 +22,42 @@ namespace Q1
             MDP Mdp = new MDP(s1, a1);
             var transitionsHostelClass = new List<Transition>
             {
-                new Transition(s1.Hostel, 0.5, -1),
-                new Transition(s1.Academic_Building, 0.5, 3)
+                new Transition(s1.Hostel, 0.5),
+                new Transition(s1.Academic_Building, 0.5)
             };
             Mdp.AddStateAction(s1.Hostel, a1.Class, transitionsHostelClass);
 
             var transitionsHostelHungry = new List<Transition>
             {
-                new Transition(s1.Canteen, 1, 1)
+                new Transition(s1.Canteen, 1)
             };
             Mdp.AddStateAction(s1.Hostel, a1.Hungry, transitionsHostelHungry);
 
             var transitionsABClass = new List<Transition>
             {
-                new Transition(s1.Academic_Building, 0.7, 3),
-                new Transition(s1.Canteen, 0.3, 1)
+                new Transition(s1.Academic_Building, 0.7),
+                new Transition(s1.Canteen, 0.3)
             };
             Mdp.AddStateAction(s1.Academic_Building, a1.Class, transitionsABClass);
 
             var transitionsABHungry = new List<Transition>
             {
-                new Transition(s1.Academic_Building, 0.2, 3),
-                new Transition(s1.Canteen, 0.8, 1)
+                new Transition(s1.Academic_Building, 0.2),
+                new Transition(s1.Canteen, 0.8)
             };
             Mdp.AddStateAction(s1.Academic_Building, a1.Hungry, transitionsABHungry);
 
             var transitionsCanteenClass = new List<Transition>
             {
-                new Transition(s1.Hostel, 0.3, -1),
-                new Transition(s1.Academic_Building, 0.6, 3),
-                new Transition(s1.Canteen, 0.1, 1)
+                new Transition(s1.Hostel, 0.3),
+                new Transition(s1.Academic_Building, 0.6),
+                new Transition(s1.Canteen, 0.1)
             };
             Mdp.AddStateAction(s1.Canteen, a1.Class, transitionsCanteenClass);
 
             var transitionsCanteenHungry = new List<Transition>
             {
-                new Transition(s1.Canteen, 1, 1)
+                new Transition(s1.Canteen, 1)
             };
             Mdp.AddStateAction(s1.Canteen, a1.Hungry, transitionsCanteenHungry);
 

@@ -28,20 +28,20 @@ namespace Q2
 
             foreach (var obstacle in obstacles)
             {
-                State obstacleState = new State($"obstacle_{obstacle.X}_{obstacle.Y}");
+                State obstacleState = new State($"obstacle_{obstacle.X}_{obstacle.Y}", 0);
                 Obstacles[obstacle] = obstacleState;
                 states.Add(obstacleState);
             }
 
-            State portalInState = new State($"portalIn_{portalIn.X}_{portalIn.Y}");
+            State portalInState = new State($"portalIn_{portalIn.X}_{portalIn.Y}", 0);
             PortalIn[portalIn] = portalInState;
             states.Add(portalInState);
 
-            State portalOutState = new State($"portalOut_{portalOut.X}_{portalOut.Y}");
+            State portalOutState = new State($"portalOut_{portalOut.X}_{portalOut.Y}", 0);
             PortalOut[portalOut] = portalOutState;
             states.Add(portalOutState);
 
-            State goalState = new State($"goal_{goal.X}_{goal.Y}");
+            State goalState = new State($"goal_{goal.X}_{goal.Y}", 1);
             Goal[goal] = goalState;
             states.Add(goalState);
 
@@ -55,7 +55,7 @@ namespace Q2
                         portalOut != current &&
                         goal != current)
                     {
-                        State walkableState = new State($"walkable_{current.X}_{current.Y}");
+                        State walkableState = new State($"walkable_{current.X}_{current.Y}", 0);
                         Walkable[current] = walkableState;
                         states.Add(walkableState);
                     }

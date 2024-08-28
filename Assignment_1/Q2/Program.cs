@@ -59,7 +59,6 @@ namespace Q2
 
                         if (env.Walkable.Keys.ToArray().Contains(current))
                         {
-                            
                             mdp.AddStateAction(env.Walkable[current], env.Actions.Left, transitionCurrentLeft);
                             mdp.AddStateAction(env.Walkable[current], env.Actions.Right, transitionCurrentRight);
                             mdp.AddStateAction(env.Walkable[current], env.Actions.Up, transitionCurrentUp);
@@ -89,37 +88,9 @@ namespace Q2
             Dictionary<State, Classes.Action> pValueIter = new Dictionary<State, Classes.Action>();
             Dictionary<State, Classes.Action> pPolicyIter = new Dictionary<State, Classes.Action>();
 
-            
-
             mdp.PolicyIteration(out vPolicyIter, out pPolicyIter, gamma, epsilon);
 
-            // Console.WriteLine("Optimal Values With Policy Iterations:");
-            // foreach (var state in mdp.States)
-            // {
-            //     Console.WriteLine($"value({state}) = {value[state]}");
-            // }
-
-            // Console.WriteLine("\nOptimal Policy:");
-            // foreach (var state in mdp.States)
-            // {
-            //     Console.WriteLine($"π({state}) = {policy[state]}");
-            // }
-
-            Console.WriteLine("\n*************************\n");
-
             mdp.ValueIteration(out vValueIter, out pValueIter, gamma, epsilon);
-
-            // Console.WriteLine("Optimal Values With Value Iterations:");
-            // foreach (var state in mdp.States)
-            // {
-            //     Console.WriteLine($"value({state}) = {value[state]}");
-            // }
-
-            // Console.WriteLine("\nOptimal Policy:");
-            // foreach (var state in mdp.States)
-            // {
-            //     Console.WriteLine($"π({state}) = {policy[state]}");
-            // }
 
             vValueIter[env.PortalIn.Values.ToArray()[0]] = vValueIter[env.PortalOut.Values.ToArray()[0]];
             vPolicyIter[env.PortalIn.Values.ToArray()[0]] = vPolicyIter[env.PortalOut.Values.ToArray()[0]];
@@ -129,30 +100,25 @@ namespace Q2
         static List<Transition> CreateTransactionList(Environment env, Coordinate currentTile, Coordinate NextTile)
         {
             var transitionsCurrentNext = new List<Transition>();
-                    
-            // Console.Write($"X:{currentTile.X} Y:{currentTile.Y}");
+
             // Next Tile is Obstacle or Boundary
             if (NextTile.X < 0 || NextTile.Y < 0 || NextTile.X >= env.n || NextTile.Y >= env.n || env.Obstacles.Keys.Contains(NextTile))
             {
                 State next;
-                Transition nextTransition;                
+                           
                 if (env.Goal.Keys.Contains(currentTile))
                 {
                     next = env.Goal[currentTile];
-                    nextTransition = new Transition(next, 0.25, 1);
-                    transitionsCurrentNext.Add(nextTransition);
-                    return transitionsCurrentNext;
                 }
                 else if (env.Walkable.Keys.Contains(currentTile))
                 {
                     next = env.Walkable[currentTile];
-                    nextTransition = new Transition(next, 0.25, 0);
                 }
                 else
                 {
                     next = env.PortalOut[currentTile];
-                    nextTransition = new Transition(next, 0.25, 0);
                 }
+                Transition nextTransition  = new Transition(next, 0.25);
                 transitionsCurrentNext.Add(nextTransition);
             }
             // Next Tile is portalIn
@@ -160,21 +126,21 @@ namespace Q2
             {
                 Coordinate portalOut = env.PortalOut.Keys.ToArray()[0];
                 State next = env.PortalOut[portalOut];
-                Transition nextTransition = new Transition(next, 0.25, 0);
+                Transition nextTransition = new Transition(next, 0.25);
                 transitionsCurrentNext.Add(nextTransition);
             }
             // Next Tile is walkable
             else if (env.Walkable.Keys.Contains(NextTile))
             {
                 State next = env.Walkable[NextTile];
-                Transition nextTransition = new Transition(next, 0.25, 0);
+                Transition nextTransition = new Transition(next, 0.25);
                 transitionsCurrentNext.Add(nextTransition);
             }
             // Next Tile is Goal
             else if (env.Goal.Keys.Contains(NextTile))
             {
                 State next = env.Goal[NextTile];
-                Transition nextTransition = new Transition(next, 0.25, 0);
+                Transition nextTransition = new Transition(next, 0.25);
                 transitionsCurrentNext.Add(nextTransition);
             }
 

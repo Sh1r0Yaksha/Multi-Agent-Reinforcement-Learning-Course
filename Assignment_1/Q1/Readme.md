@@ -8,11 +8,11 @@ Here gamma is the discount factor in MDP, the value is not converging for a very
 
 
 # Value Iterations:
-value(Hostel) = 2041.9216
+value(Hostel) = 2038.8797
 
-value(Academic_Building) = 2044.0076
+value(Academic_Building) = 2044.9636
 
-value(Canteen) = 2042.8197
+value(Canteen) = 2041.7769
 
 **Optimal Policy:**
 
@@ -23,11 +23,11 @@ value(Canteen) = 2042.8197
 π(Canteen) = Class
 
 # Policy Iterations:
-value(Hostel) = 2041.9216
+value(Hostel) = 2038.8797
 
-value(Academic_Building) = 2044.0076
+value(Academic_Building) = 2044.9636
 
-value(Canteen) = 2042.8197
+value(Canteen) = 2041.7769
 
 **Optimal Policy:**
 π(Hostel) = Class

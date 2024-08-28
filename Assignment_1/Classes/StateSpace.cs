@@ -11,9 +11,9 @@ namespace Classes
             states = new Dictionary<string, State>();
         }
         // Shorthand method to allow 's1.Add("Sleep")'
-        public void Add(string stateName)
+        public void Add(string stateName, double stateReward)
         {
-            states.Add(stateName, new State(stateName));
+            states.Add(stateName, new State(stateName, stateReward));
         }
 
         public void Add(State state)

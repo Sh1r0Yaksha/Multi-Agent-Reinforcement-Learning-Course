@@ -56,11 +56,11 @@ namespace Classes
 
                     foreach (var stateAction in GetStateActions(state))
                     {
-                        double actionValue = 0.0;
+                        double actionValue = state.Reward;
 
                         foreach (var transition in stateAction.Transitions)
                         {
-                            actionValue += transition.Probability * (transition.Reward + gamma * value[transition.NextState]);
+                            actionValue += transition.Probability *  gamma * value[transition.NextState];
                         }
 
                         if (actionValue > maxValue)
@@ -106,7 +106,7 @@ namespace Classes
 
                 foreach (var state in States)
                 {
-                    double newValue = 0.0;
+                    double newValue = state.Reward;
 
                     var stateAction = GetStateActions(state).FirstOrDefault(sa => sa.ActionTaken == policy[state]);
 
@@ -114,7 +114,7 @@ namespace Classes
                     {
                         foreach (var transition in stateAction.Transitions)
                         {
-                            newValue += transition.Probability * (transition.Reward + gamma * value[transition.NextState]);
+                            newValue += transition.Probability * (gamma * value[transition.NextState]);
                         }
                     }
 

@@ -1,6 +1,6 @@
 # Assumptions
 
-* It is assumed that after each step the robot can move only to one of its neighbour tile in the Left, Right, Up and Down directions. 
+* It is assumed that after each step the robot can move only to one of its neighbour tile in the Left, Right, Up and Down directions, each with probabilities 0.25. 
 * It is also assumed that if an action is taken from a tile to another tile such that the next tile is either out of bounds or an obstacle, the robot will remain at the same tile
 * If the robot is at the Portal In tile, it will automatically be teleported to the Portal Out tile without taking any steps
 

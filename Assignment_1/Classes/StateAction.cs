@@ -13,9 +13,9 @@ namespace Classes
             Transitions = new List<Transition>();
         }
 
-        public void AddTransition(State nextState, double probability, double reward)
+        public void AddTransition(State nextState, double probability)
         {
-            Transitions.Add(new Transition(nextState, probability, reward));
+            Transitions.Add(new Transition(nextState, probability));
         }
     }
 }
